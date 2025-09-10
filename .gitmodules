@@ -1,0 +1,4 @@
+[submodule "acoular"]
+	path = packages/acoular
+	url = https://github.com/SCragg/acoular.git
+	branch = add_directivity
