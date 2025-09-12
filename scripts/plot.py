@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.io import wavfile
 
 # Load the WAV file
-sample_rate, data = wavfile.read('sine_.wav')  # Replace with your actual file name
+sample_rate, data = wavfile.read('sine_rotation.wav')  # Replace with your actual file name
 
 # Create time axis in seconds
 duration = len(data) / sample_rate
