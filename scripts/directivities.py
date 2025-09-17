@@ -2,10 +2,16 @@ import acoular as ac
 import numpy as np
 import spharpy as sph
 import matplotlib.pyplot as plt
+import argparse
 
 
 def plot_directivities() -> None:
-    sh_order = 8
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--plot_resolution', default= 8, type=int,
+                        help='resolution of the directivity plot - in spherical harmonic order')
+    parser.add_argument('--sh_order', default = 1, type=int, help='max order of spherical harmonics to plot for sh directivity')
+    args = parser.parse_args()
+    sh_order = args.plot_resolution
     coords = sph.samplings.equalarea(sh_order)
     directivities = ac.directivity.Directivity.__subclasses__()
     fig = plt.figure()
@@ -14,7 +20,7 @@ def plot_directivities() -> None:
     normal_directivities = [d for d in directivities if d != ac.SphericalHarmonicDirectivity]
 
     # Get SH coefficients
-    sh_max_order = 1
+    sh_max_order = args.sh_order
     sh_instance = ac.SphericalHarmonicDirectivity(target_directions=coords.cartesian, n=sh_max_order)
     sh_coeffs = sh_instance.coefficients
 
